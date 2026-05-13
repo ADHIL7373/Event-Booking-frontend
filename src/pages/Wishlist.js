@@ -30,7 +30,7 @@ const WishlistPage = () => {
     }
 
     fetchWishlist();
-  }, [page, sortBy, token, navigate]);
+  }, [page, sortBy, token, navigate, fetchWishlist]);
 
   const fetchWishlist = async () => {
     try {

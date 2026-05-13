@@ -15,13 +15,8 @@ const Ticket = () => {
   const { bookingId } = useParams();
   const [booking, setBooking] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const qrRef = useRef();
   const ticketCardRef = useRef();
-
-  useEffect(() => {
-    fetchBooking();
-  }, [bookingId]);
 
   const fetchBooking = async () => {
     setLoading(true);
@@ -29,11 +24,15 @@ const Ticket = () => {
       const data = await bookingService.getBookingById(bookingId);
       setBooking(data.booking);
     } catch (err) {
-      setError(err.message || 'Failed to fetch booking');
+      console.error('Failed to fetch booking:', err.message);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchBooking();
+  }, [bookingId]);
 
   const handlePrint = () => {
     window.print();

@@ -49,14 +49,14 @@ const eventService = {
       }
       
       if (error.response?.status === 400) {
-        throw backendError?.message || 'Invalid form data. Please check all fields.';
+        throw new Error(backendError?.message || 'Invalid form data. Please check all fields.');
       }
       
       if (error.response?.status === 401) {
-        throw 'You are not authorized to create events.';
+        throw new Error('You are not authorized to create events.');
       }
       
-      throw backendError || error?.message || 'Event creation failed';
+      throw new Error(backendError?.message || error?.message || 'Event creation failed');
     }
   },
 

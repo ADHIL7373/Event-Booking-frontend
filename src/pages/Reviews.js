@@ -30,7 +30,7 @@ const ReviewsPage = () => {
     }
 
     fetchReviews();
-  }, [page, sortBy, token, navigate]);
+  }, [page, sortBy, token, navigate, fetchReviews]);
 
   const fetchReviews = async () => {
     try {
