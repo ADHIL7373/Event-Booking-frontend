@@ -19,31 +19,50 @@ const AdminDashboard = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
+    const fetchDashboard = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/dashboard/admin`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        
+        if (response.data?.dashboard) {
+          setDashboard(response.data.dashboard);
+          setError('');
+        }
+      } catch (err) {
+        const errorMsg = err.response?.data?.message || err.message || 'Failed to fetch dashboard';
+        setError(errorMsg);
+        console.error('Dashboard fetch error:', err);
+      } finally {
+        setLoading(false);
+        setRefreshing(false);
+      }
+    };
+
     fetchDashboard();
   }, []);
 
-  const fetchDashboard = async () => {
-    try {
-      const response = await axios.get(`${API_BASE_URL}/dashboard/admin`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      
-      if (response.data?.dashboard) {
-        setDashboard(response.data.dashboard);
-        setError('');
-      }
-    } catch (err) {
-      const errorMsg = err.response?.data?.message || err.message || 'Failed to fetch dashboard';
-      setError(errorMsg);
-      console.error('Dashboard fetch error:', err);
-    } finally {
-      setLoading(false);
-      setRefreshing(false);
-    }
-  };
-
   const handleRefresh = async () => {
     setRefreshing(true);
+    const fetchDashboard = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/dashboard/admin`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        
+        if (response.data?.dashboard) {
+          setDashboard(response.data.dashboard);
+          setError('');
+        }
+      } catch (err) {
+        const errorMsg = err.response?.data?.message || err.message || 'Failed to fetch dashboard';
+        setError(errorMsg);
+        console.error('Dashboard fetch error:', err);
+      } finally {
+        setLoading(false);
+        setRefreshing(false);
+      }
+    };
     await fetchDashboard();
   };
 

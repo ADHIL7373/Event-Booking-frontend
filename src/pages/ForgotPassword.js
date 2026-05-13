@@ -21,7 +21,7 @@ const ForgotPassword = () => {
     setLoading(true);
 
     try {
-      const data = await authService.forgotPassword(email);
+      await authService.forgotPassword(email);
       
       setSuccess(true);
       // Store email for next step
