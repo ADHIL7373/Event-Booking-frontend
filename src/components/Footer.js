@@ -70,8 +70,6 @@ const Footer = () => {
     }
   };
 
-  const isEmailValid = isValidEmail(email);
-
   return (
     <footer className="footer">
       {/* Trust Divider */}
@@ -124,8 +122,8 @@ const Footer = () => {
           <ul>
             <li><a href="/events">Browse Events</a></li>
             <li><a href="/my-bookings">My Bookings</a></li>
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">Contact Support</a></li>
+            <li><a href="/contact">Help Center</a></li>
+            <li><a href="/support">Contact Support</a></li>
           </ul>
         </div>
 
@@ -133,10 +131,10 @@ const Footer = () => {
         <div className="footer-section footer-info">
           <h4>Information</h4>
           <ul>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Security</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/security">Security</a></li>
           </ul>
         </div>
 

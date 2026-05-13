@@ -4,7 +4,7 @@
  * Apple-style minimal design
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './ReviewList.css';
 
@@ -20,7 +20,7 @@ const ReviewList = ({ eventId }) => {
 
   const token = localStorage.getItem('token');
 
-  const fetchReviews = async () => {
+  const fetchReviews = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -44,11 +44,11 @@ const ReviewList = ({ eventId }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [eventId, page, sortBy, ratingFilter, token]);
 
   useEffect(() => {
     fetchReviews();
-  }, [eventId, page, sortBy, ratingFilter, token, fetchReviews]);
+  }, [fetchReviews]);
 
   const handleMarkHelpful = async (reviewId, helpful) => {
     try {
