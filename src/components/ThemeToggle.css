@@ -1,0 +1,105 @@
+/**
+ * Theme Toggle - iOS Style Switch
+ * Compact perfect size
+ */
+
+.theme-toggle {
+  position: relative;
+  width: 48px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.theme-toggle:active {
+  transform: scale(0.98);
+}
+
+/* Toggle track background */
+.toggle-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 14px;
+  background-color: #e5e7eb;
+  transition: background-color 0.3s ease;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.toggle-track.active {
+  background-color: #3b82f6;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Toggle knob - the circular button */
+.toggle-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.theme-toggle:hover .toggle-knob {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:active .toggle-knob {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  .toggle-track {
+    background-color: rgba(100, 116, 139, 0.5);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .toggle-track.active {
+    background-color: #3b82f6;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .toggle-knob {
+    background: #f1f5f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .theme-toggle:hover .toggle-knob {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* Accessibility - Focus states */
+.theme-toggle:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .toggle-track,
+  .toggle-knob {
+    transition: none;
+  }
+}
+

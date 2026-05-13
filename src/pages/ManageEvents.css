@@ -1,0 +1,710 @@
+/**
+ * Manage Events Page - Apple Inspired Design
+ * Clean, minimal, elegant interface
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+.manage-events-page {
+  min-height: 100vh;
+  background: #f5f5f7;
+  padding: 2rem 0;
+  margin-top: 80px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark Mode */
+.manage-events-page.dark {
+  background: #1d1d1f;
+}
+
+.manage-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.manage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.manage-header h1 {
+  color: #1d1d1f;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.manage-events-page.dark .manage-header h1 {
+  color: #f5f5f7;
+}
+
+/* Messages with Apple-like styling */
+.success-message {
+  background: #d1e7dd;
+  color: #0f5132;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-left: 4px solid #198754;
+  box-shadow: 0 2px 8px rgba(25, 135, 84, 0.1);
+  animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.error-message {
+  background: #f8d7da;
+  color: #842029;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-left: 4px solid #dc3545;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.1);
+  animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Dark mode messages */
+.manage-events-page.dark .success-message {
+  background: #1e5631;
+  color: #d1e7dd;
+  border-left-color: #34c759;
+}
+
+.manage-events-page.dark .error-message {
+  background: #5a1f1f;
+  color: #f8d7da;
+  border-left-color: #dc3545;
+}
+
+/* Controls Section */
+.manage-controls {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 280px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.95rem 1.2rem;
+  border: 1px solid #d5d5d7;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: white;
+  color: #1d1d1f;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.search-input::placeholder {
+  color: #86868b;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #0071e3;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.15);
+}
+
+/* Dark mode search */
+.manage-events-page.dark .search-input {
+  background: #424245;
+  color: #f5f5f7;
+  border-color: #424245;
+}
+
+.manage-events-page.dark .search-input::placeholder {
+  color: #a1a1a6;
+}
+
+.manage-events-page.dark .search-input:focus {
+  border-color: #0071e3;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.25);
+}
+
+.sort-select {
+  padding: 0.95rem 1.2rem;
+  border: 1px solid #d5d5d7;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: white;
+  color: #1d1d1f;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+  transition: all 0.2s ease;
+  font-family: inherit;
+  font-weight: 500;
+  min-width: 160px;
+}
+
+.sort-select:hover {
+  border-color: #0071e3;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: #0071e3;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.15);
+}
+
+/* Dark mode sort select */
+.manage-events-page.dark .sort-select {
+  background: #424245;
+  color: #f5f5f7;
+  border-color: #424245;
+}
+
+.manage-events-page.dark .sort-select:hover {
+  border-color: #0071e3;
+}
+
+.manage-events-page.dark .sort-select:focus {
+  border-color: #0071e3;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.25);
+}
+
+/* Dark mode sort select options */
+.manage-events-page.dark .sort-select option {
+  background: #424245;
+  color: #f5f5f7;
+}
+
+/* Events List */
+.events-list {
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.events-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 1rem;
+  font-size: 0.95rem;
+}
+
+.events-table thead {
+  background: transparent;
+  color: #86868b;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.events-table th {
+  padding: 1rem 1.5rem 0.8rem;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid #e5e5e7;
+  color: #86868b;
+  font-weight: 600;
+}
+
+/* Dark mode table header */
+.manage-events-page.dark .events-table th {
+  border-bottom-color: #424245;
+  color: #a1a1a6;
+}
+
+/* Table Row Styling */
+.events-table tbody tr {
+  border: none;
+  background: white;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.events-table tbody tr:hover {
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.events-table tbody tr:active {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transform: translateY(0);
+}
+
+/* Dark mode table rows */
+.manage-events-page.dark .events-table tbody tr {
+  background: #292929;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.manage-events-page.dark .events-table tbody tr:hover {
+  background: #2d2d2d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.events-table td {
+  padding: 1.2rem 1.5rem;
+  color: #1d1d1f;
+}
+
+.events-table tr td:first-child {
+  border-radius: 12px 0 0 12px;
+}
+
+.events-table tr td:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+/* Image Cell */
+.image-cell {
+  width: 90px;
+}
+
+.event-thumb {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background: #f5f5f7;
+}
+
+/* Title Cell */
+.title-cell {
+  max-width: 220px;
+}
+
+.event-title {
+  font-weight: 600;
+  color: #1d1d1f;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1rem;
+}
+
+/* Date Cell */
+.date-cell {
+  min-width: 140px;
+}
+
+.event-date {
+  display: block;
+  font-weight: 600;
+  color: #0071e3;
+  font-size: 0.95rem;
+}
+
+.event-time {
+  display: block;
+  font-size: 0.85rem;
+  color: #86868b;
+  margin-top: 0.3rem;
+}
+
+/* Location Cell */
+.location-cell {
+  max-width: 170px;
+}
+
+.event-location {
+  color: #555;
+  font-size: 0.9rem;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Price Cell */
+.price-cell {
+  min-width: 90px;
+}
+
+.event-price {
+  font-weight: 700;
+  color: #198754;
+  font-size: 1.1rem;
+}
+
+/* Category Cell */
+.category-cell {
+  min-width: 110px;
+}
+
+.category-badge {
+  display: inline-block;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid #d5d5d7;
+  pointer-events: none;
+  user-select: none;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Seats Cell */
+.seats-cell {
+  min-width: 90px;
+}
+
+.seats-info {
+  font-weight: 600;
+  color: #1d1d1f;
+  font-size: 0.95rem;
+}
+
+/* Actions Cell */
+.actions-cell {
+  display: flex;
+  gap: 0.5rem;
+  min-width: 110px;
+}
+
+.action-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 85px;
+  font-family: inherit;
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: white;
+  box-shadow: 0 1px 3px rgba(220, 53, 69, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.delete-btn:hover:not(:disabled) {
+  background: #c82333;
+  box-shadow: 0 3px 8px rgba(220, 53, 69, 0.3);
+}
+
+.delete-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.delete-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Dark mode text colors */
+.manage-events-page.dark .event-title,
+.manage-events-page.dark .seats-info {
+  color: #f5f5f7;
+}
+
+.manage-events-page.dark .event-location,
+.manage-events-page.dark .event-time {
+  color: #a1a1a6;
+}
+
+.manage-events-page.dark .event-date {
+  color: #0071e3;
+}
+
+.manage-events-page.dark .event-price {
+  color: #34c759;
+}
+
+/* Dark mode category badge */
+.manage-events-page.dark .category-badge {
+  background: #505053;
+  color: #f5f5f7;
+  border-color: #505053;
+}
+
+/* Empty State */
+.empty-state {
+  padding: 5rem 2rem;
+  text-align: center;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.empty-state h2 {
+  color: #1d1d1f;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.empty-state p {
+  color: #86868b;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+/* Summary */
+.summary-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+  color: #86868b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e5e7;
+  font-size: 0.95rem;
+}
+
+.summary-section strong {
+  color: #0071e3;
+  font-weight: 700;
+}
+
+/* Dark mode empty state */
+.manage-events-page.dark .empty-state {
+  background: #292929;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.manage-events-page.dark .empty-state h2 {
+  color: #f5f5f7;
+}
+
+.manage-events-page.dark .empty-state p {
+  color: #a1a1a6;
+}
+
+/* Dark mode summary */
+.manage-events-page.dark .summary-section {
+  background: #292929;
+  color: #a1a1a6;
+  border-color: #424245;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .manage-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .manage-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .manage-controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search-box,
+  .sort-select {
+    width: 100%;
+  }
+
+  .events-table {
+    font-size: 0.85rem;
+  }
+
+  .events-table th,
+  .events-table td {
+    padding: 0.9rem 1.2rem;
+  }
+
+  .actions-cell {
+    flex-direction: column;
+    min-width: auto;
+  }
+
+  .action-btn {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .manage-events-page {
+    padding: 1rem 0;
+    margin-top: 70px;
+  }
+
+  .manage-container {
+    padding: 0 1rem;
+  }
+
+  .manage-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .manage-controls {
+    gap: 0.8rem;
+  }
+
+  .search-input,
+  .sort-select {
+    font-size: 0.95rem;
+  }
+
+  .events-table {
+    font-size: 0.8rem;
+    border-spacing: 0 0.8rem;
+  }
+
+  .events-table th {
+    padding: 0.8rem 1rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .events-table td {
+    padding: 0.9rem 1rem;
+  }
+
+  .event-title {
+    max-width: 120px;
+    font-size: 0.9rem;
+  }
+
+  .event-location {
+    max-width: 100px;
+    font-size: 0.8rem;
+  }
+
+  .event-thumb {
+    width: 60px;
+    height: 45px;
+  }
+
+  .action-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .title-cell {
+    max-width: 140px;
+  }
+
+  .empty-state {
+    padding: 3rem 1rem;
+  }
+
+  .empty-state h2 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .manage-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .manage-container {
+    padding: 0 0.8rem;
+  }
+
+  .manage-controls {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .search-input,
+  .sort-select {
+    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .events-table {
+    font-size: 0.7rem;
+    border-spacing: 0 0.6rem;
+  }
+
+  .events-table th {
+    padding: 0.6rem 0.8rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .events-table td {
+    padding: 0.7rem 0.8rem;
+  }
+
+  .event-date,
+  .event-price {
+    font-size: 0.9rem;
+  }
+
+  .event-time {
+    font-size: 0.75rem;
+  }
+
+  .action-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+    min-width: auto;
+  }
+
+  .image-cell {
+    width: 70px;
+  }
+
+  .event-thumb {
+    width: 60px;
+    height: 45px;
+  }
+
+  .title-cell {
+    max-width: 100px;
+  }
+
+  .category-badge {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .empty-state {
+    padding: 2.5rem 0.8rem;
+  }
+
+  .empty-state h2 {
+    font-size: 1.3rem;
+  }
+}

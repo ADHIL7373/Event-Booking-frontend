@@ -1,0 +1,280 @@
+/**
+ * Ticket Page Styles - Apple-Inspired Premium Digital Ticket
+ */
+
+.ticket-page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  padding: 3rem 2rem;
+}
+
+.ticket-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ticket-header {
+  text-align: center;
+  color: var(--text-primary);
+  margin-bottom: 3rem;
+}
+
+.ticket-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.ticket-subtitle {
+  font-size: 1rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.ticket-card {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.ticket-content {
+  padding: 2.5rem;
+}
+
+.ticket-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.ticket-section:last-of-type {
+  border-bottom: none;
+}
+
+.ticket-section h2 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.ticket-section h3 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.ticket-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.value {
+  font-size: 0.95rem;
+  color: #000;
+  font-weight: 700;
+}
+
+.value .currency-symbol {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.qr-section {
+  text-align: center;
+  padding: 2rem 0;
+  margin: 2rem 0;
+}
+
+.qr-label {
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+
+.qr-code {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+}
+
+.status {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  display: inline-block;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status.confirmed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status.cancelled {
+  background: #fee2e2;
+  color: #7f1d1d;
+}
+
+.ticket-numbers-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.75rem;
+}
+
+.ticket-number {
+  background: var(--accent-blue);
+  color: white;
+  padding: 0.7rem 0.8rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+  word-break: break-all;
+}
+
+.important-notes {
+  background: var(--bg-secondary);
+  border-left: 3px solid var(--warning);
+  padding: 1.2rem;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.important-notes p {
+  margin: 0;
+}
+
+.ticket-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn-print,
+.btn-download,
+.btn-close {
+  flex: 1;
+  min-width: 140px;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-print {
+  background: var(--accent-blue);
+  color: white;
+}
+
+.btn-print:hover {
+  background: #0f3460;
+  transform: translateY(-2px);
+}
+
+.btn-download {
+  background: #0f3460;
+  color: white;
+}
+
+.btn-download:hover {
+  background: #0a1f3d;
+  transform: translateY(-2px);
+}
+
+.btn-close {
+  background: #ccc;
+  color: #333;
+}
+
+.btn-close:hover {
+  background: #bbb;
+  transform: translateY(-2px);
+}
+
+.ticket-error {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .ticket-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-actions {
+    flex-direction: column;
+  }
+
+  .btn-print,
+  .btn-download,
+  .btn-close {
+    min-width: 100%;
+  }
+}
+
+@media print {
+  .ticket-page {
+    background: white;
+    padding: 0;
+  }
+
+  .ticket-header {
+    color: #333;
+  }
+
+  .ticket-actions {
+    display: none;
+  }
+}

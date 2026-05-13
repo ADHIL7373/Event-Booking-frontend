@@ -1,0 +1,393 @@
+/**
+ * Event Detail Styles - Apple-Inspired Product Page
+ */
+
+.event-detail-page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  padding: 3rem 0;
+}
+
+.event-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.event-image-section {
+  position: relative;
+}
+
+.event-detail-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+}
+
+.category-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--accent-blue);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.event-info-section {
+  background: var(--bg-primary);
+  padding: 0;
+}
+
+.event-info-section h1 {
+  font-size: 2.2rem;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.event-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.info-item {
+  background: var(--bg-secondary);
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info-item strong {
+  font-size: 0.7rem;
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.info-item p {
+  font-size: 1.1rem;
+  color: #999;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.info-item p strong {
+  font-weight: 700;
+  color: #000;
+}
+
+/* Price styling */
+.price {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #10b981 !important;
+}
+
+/* Currency styling - green */
+.price::before,
+.currency-symbol {
+  color: #10b981;
+  font-weight: 700;
+}
+
+/* Dark Mode */
+html.dark .info-item strong {
+  color: #e5e7eb;
+}
+
+html.dark .info-item p {
+  color: #d1d5db;
+}
+
+html.dark .info-item p strong {
+  color: #d1d5db;
+}
+
+html.dark .price {
+  color: #10b981 !important;
+}
+
+html.dark .price .currency-symbol {
+  color: #10b981;
+}
+
+.description {
+  margin-bottom: 2rem;
+}
+
+.description h3 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.description p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.availability-section {
+  margin-bottom: 2rem;
+  background: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.availability-section h3 {
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.availability-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.availability-fill {
+  height: 100%;
+  background: var(--accent-blue);
+  transition: width 0.3s ease;
+}
+
+.availability-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.error-message {
+  background: #fee;
+  color: #c00;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #fdd;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.booking-form {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 14px;
+  margin-top: 2rem;
+  border: 1px solid var(--border-color);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.ticket-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-quantity {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-quantity:hover {
+  background: var(--accent-blue);
+  color: white;
+  border-color: var(--accent-blue);
+}
+
+.ticket-selector input {
+  width: 80px;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.ticket-selector input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.1);
+}
+
+.price-summary {
+  background: var(--bg-primary);
+  padding: 1.25rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.price-row span:last-child {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.price-row.total {
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+}
+
+.price-row.total span:last-child {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.btn-book {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.btn-book:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-book:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sold-out {
+  background: #fee;
+  color: #c00;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  border: 1px solid #fdd;
+}
+
+.error-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--bg-primary);
+  border-radius: 12px;
+  text-align: center;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+@media screen and (max-width: 768px) {
+  .event-detail-container {
+    grid-template-columns: 1fr;
+  }
+
+  .event-detail-image {
+    height: 300px;
+  }
+
+  .event-info-section h1 {
+    font-size: 1.5rem;
+  }
+
+  .info-item p {
+    font-size: 1rem;
+  }
+
+  .price {
+    font-size: 1.3rem !important;
+  }
+}
+
+/* Reviews Section */
+.reviews-section {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(167, 139, 250, 0.05));
+  padding: 60px 20px;
+  margin-top: 40px;
+  border-top: 1px solid var(--border-color);
+}
+
+.reviews-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.reviews-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 40px;
+  text-align: center;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--text-primary), var(--accent-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

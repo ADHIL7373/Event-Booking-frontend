@@ -1,0 +1,768 @@
+/**
+ * Footer - Premium Apple-Inspired, Trust-Focused Design
+ * High-performance, responsive, engagement-optimized
+ */
+
+/* ==================== Footer Base ==================== */
+.footer {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 4rem 2rem 2rem;
+  margin-top: 6rem;
+  border-top: 1px solid var(--border-color);
+  transition: background-color 0.3s ease;
+}
+
+/* ==================== Trust Divider - Premium Touch ==================== */
+.footer-trust-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+  margin-bottom: 3rem;
+  max-width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==================== Footer Container - Grid Layout ==================== */
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+/* ==================== Footer Section Base ==================== */
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section h4 {
+  margin: 0 0 1.25rem 0;
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.footer-section p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* ==================== Brand Section - Premium Show ==================== */
+.footer-brand {
+  grid-column: 1;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.footer-logo .logo-icon {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-blue);
+}
+
+.footer-logo h3 {
+  font-size: 1.4rem;
+  margin: 0;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.brand-tagline {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem 0 !important;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* ==================== Trust Indicators - Key Feature ==================== */
+.trust-indicators {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+  padding: 1rem;
+  background: rgba(59, 130, 246, 0.05);
+  border-radius: 12px;
+  border-left: 3px solid var(--accent-blue);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.trust-icon {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.trust-text {
+  line-height: 1.3;
+}
+
+/* ==================== Social Links - Minimal Premium ==================== */
+.social-links {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0;
+}
+
+.social-links a {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  border-color: var(--accent-blue);
+  background: rgba(59, 130, 246, 0.08);
+  color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+.social-links a span {
+  display: flex;
+  align-items: center;
+}
+
+/* ==================== Quick Links ==================== */
+.footer-links {
+  grid-column: 2;
+}
+
+.footer-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent-blue);
+  transition: width 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-blue);
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+/* ==================== Information Section ==================== */
+.footer-info {
+  grid-column: 3;
+}
+
+.footer-info ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-info a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.footer-info a:hover {
+  color: var(--accent-blue);
+}
+
+.security-note {
+  padding: 1.2rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%);
+  border: 1.5px solid rgba(59, 130, 246, 0.4);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(59, 130, 246, 0.1);
+}
+
+.security-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+}
+
+.security-note::after {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 28px;
+  background: rgba(59, 130, 246, 0.2);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* ==================== Security Note in Brand Section ==================== */
+.footer-brand .security-note {
+  margin-top: 1.5rem;
+}
+
+/* ==================== Security Note - Centered Below Quick Links & Information ==================== */
+.footer-security-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem auto 0;
+  padding: 0 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.security-note-centered {
+  padding: 1.2rem 2rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%);
+  border: 1.5px solid rgba(59, 130, 246, 0.4);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(59, 130, 246, 0.1);
+  max-width: 700px;
+  width: 100%;
+}
+
+.security-note-centered::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+}
+
+.security-note-centered::after {
+  content: '';
+  display: none;
+}
+
+.security-note-centered:hover {
+  border-color: rgba(59, 130, 246, 0.6);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.08) 100%);
+  box-shadow: inset 0 1px 2px rgba(59, 130, 246, 0.1), 0 4px 12px rgba(59, 130, 246, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ==================== Newsletter Section - Engagement Engine ==================== */
+.footer-newsletter {
+  grid-column: 4;
+}
+
+.newsletter-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  margin: 0 0 1.25rem 0;
+  line-height: 1.5;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.newsletter-input-group {
+  display: flex;
+  gap: 0.5rem;
+  position: relative;
+  align-items: stretch;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  font-size: 0.88rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-width: 0;
+}
+
+.newsletter-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.newsletter-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.newsletter-button {
+  padding: 0.65rem 1.25rem;
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  border-radius: 9px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.25px;
+  text-transform: uppercase;
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.newsletter-button:hover:not(:disabled) {
+  background: linear-gradient(to bottom, var(--accent-blue), rgba(59, 130, 246, 0.85));
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.newsletter-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.newsletter-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==================== Newsletter Messages - Feedback ==================== */
+.newsletter-message {
+  font-size: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border-left: 3px solid;
+  font-weight: 500;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.newsletter-success {
+  background: rgba(52, 199, 89, 0.1);
+  border-left-color: var(--success);
+  color: var(--success);
+}
+
+.newsletter-error {
+  background: rgba(220, 38, 38, 0.1);
+  border-left-color: var(--danger);
+  color: var(--danger);
+}
+
+/* ==================== Footer Bottom - Trust & Legal ==================== */
+.footer-bottom-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 2.5rem 0;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-bottom-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.copyright {
+  color: var(--text-tertiary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  background: rgba(59, 130, 246, 0.08);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+
+/* ==================== Responsive Design ==================== */
+
+/* Tablet: 2-column layout */
+@media screen and (max-width: 1024px) {
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-newsletter {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Mobile: Stacked layout */
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 3rem 1.5rem 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .footer-trust-divider {
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .footer-links,
+  .footer-info,
+  .footer-newsletter {
+    grid-column: auto;
+  }
+
+  .footer-logo {
+    margin-bottom: 1rem;
+  }
+
+  .trust-indicators {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+  }
+
+  .social-links {
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  .social-links a {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .footer-brand .security-note {
+    margin-top: 1.25rem;
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .footer-section ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem 1.5rem;
+  }
+
+  .newsletter-input-group {
+    flex-direction: row;
+    gap: 0.45rem;
+  }
+
+  .newsletter-button {
+    width: auto;
+    padding: 0.6rem 1.15rem;
+    font-size: 0.78rem;
+  }
+
+  .footer-bottom-content {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+  }
+
+  .trust-badge {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Mobile Small: Extra optimization */
+@media screen and (max-width: 480px) {
+  .footer {
+    padding: 2rem 1rem 1rem;
+    margin-top: 3rem;
+  }
+
+  .footer-container {
+    gap: 1.5rem;
+  }
+
+  .footer-section h4 {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-section p {
+    font-size: 0.85rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .trust-indicators {
+    padding: 0.85rem;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .trust-item {
+    font-size: 0.8rem;
+    gap: 0.6rem;
+  }
+
+  .footer-section ul {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .footer-section a {
+    font-size: 0.85rem;
+  }
+
+  .footer-brand .security-note {
+    margin-top: 1rem;
+    padding: 0.95rem;
+    font-size: 0.8rem;
+  }
+
+  .newsletter-input {
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .newsletter-button {
+    font-size: 0.78rem;
+    padding: 0.6rem 0.95rem;
+  }
+
+  .newsletter-message {
+    font-size: 0.75rem;
+    padding: 0.55rem 0.7rem;
+  }
+
+  .newsletter-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 0.95rem;
+  }
+
+  .footer-bottom-divider {
+    margin: 2rem 0;
+  }
+
+  .copyright,
+  .trust-badge {
+    font-size: 0.75rem;
+  }
+}
+
+/* ==================== Security Note Hover & Interactions ==================== */
+.security-note:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 2px rgba(59, 130, 246, 0.1), 0 8px 16px rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.6);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.08) 100%);
+}
+
+/* ==================== Dark Mode Support ==================== */
+html.dark .footer-logo .logo-icon {
+  color: var(--accent-blue);
+}
+
+html.dark .trust-indicators {
+  background: rgba(59, 130, 246, 0.08);
+  border-left-color: var(--accent-blue);
+}
+
+html.dark .social-links a {
+  border-color: var(--border-color);
+}
+
+html.dark .social-links a:hover {
+  border-color: var(--accent-blue);
+  background: rgba(59, 130, 246, 0.15);
+}
+
+html.dark .security-note {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.06) 100%);
+  border-color: rgba(59, 130, 246, 0.35);
+  color: rgba(59, 130, 246, 0.95);
+  box-shadow: inset 0 1px 2px rgba(59, 130, 246, 0.08);
+}
+
+html.dark .security-note:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.08) 100%);
+  box-shadow: inset 0 1px 2px rgba(59, 130, 246, 0.08), 0 8px 16px rgba(59, 130, 246, 0.1);
+}
+
+html.dark .newsletter-input {
+  background: var(--bg-primary);
+}
+
+html.dark .footer-brand {
+  border-bottom-color: var(--border-color);
+}
+
+html.dark .newsletter-success {
+  background: rgba(52, 199, 89, 0.12);
+}
+
+html.dark .newsletter-error {
+  background: rgba(220, 38, 38, 0.12);
+}
+
+html.dark .trust-badge {
+  background: rgba(59, 130, 246, 0.12);
+}
+
+/* ==================== Accessibility ==================== */
+.footer-section a:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.newsletter-button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.newsletter-input:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+/* ==================== Print Styles ==================== */
+@media print {
+  .footer {
+    margin-top: 2rem;
+    padding: 2rem 0;
+  }
+
+  .newsletter-form,
+  .social-links {
+    display: none;
+  }
+}

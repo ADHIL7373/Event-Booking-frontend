@@ -1,0 +1,12 @@
+.filter select {
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(15,23,36,0.06);
+  background: linear-gradient(180deg,#ffffff,#fbfbfd);
+  font-size: 14px;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+}
+
+@media (max-width: 700px) {
+  .filter select { width: 100%; }
+}

@@ -1,0 +1,333 @@
+/* Reward Points Redeemer - Apple-style Checkout Component */
+
+.reward-points-redeemer {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 20px;
+  margin: 20px 0;
+  transition: all 0.3s ease;
+}
+
+.redeemer-header {
+  margin-bottom: 16px;
+}
+
+.redeemer-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.available-points {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+/* Slider Section */
+.slider-section {
+  margin-bottom: 20px;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+
+.max-label {
+  font-weight: 600;
+  color: var(--accent-blue);
+}
+
+.points-slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, 
+    var(--border-color) 0%, 
+    var(--accent-blue) 50%, 
+    var(--accent-blue) 100%
+  );
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.points-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  transition: all 0.2s ease;
+}
+
+.points-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+}
+
+.points-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  transition: all 0.2s ease;
+}
+
+.points-slider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+}
+
+.points-slider:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Points Display */
+.points-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: var(--bg-primary);
+  border-radius: 10px;
+}
+
+.point-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.point-label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.point-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.point-value.selected {
+  background: linear-gradient(135deg, #3b82f6 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.point-value.discount {
+  color: var(--success);
+}
+
+/* Price Breakdown */
+.price-breakdown {
+  background: var(--bg-primary);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.breakdown-row:last-child {
+  border-bottom: none;
+}
+
+.breakdown-row.total {
+  border-top: 1px solid var(--border-color);
+  border-bottom: none;
+  padding-top: 12px;
+  margin-top: 4px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.breakdown-row.total span:last-child {
+  background: linear-gradient(135deg, #3b82f6 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.breakdown-row .discount {
+  color: var(--success);
+  font-weight: 600;
+}
+
+/* Info Text */
+.info-text {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  background: rgba(59, 130, 246, 0.04);
+  border-left: 2px solid var(--accent-blue);
+  border-radius: 4px;
+}
+
+/* Buttons */
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.button-primary,
+.button-secondary {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #7c3aed 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.button-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.button-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button-secondary {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.button-secondary:hover:not(:disabled) {
+  border-color: var(--accent-blue);
+  background: var(--bg-secondary);
+}
+
+.button-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Messages */
+.error-message {
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: var(--danger);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  animation: slideIn 0.3s ease;
+}
+
+.success-message {
+  background: rgba(52, 199, 89, 0.06);
+  border: 1px solid rgba(52, 199, 89, 0.2);
+  color: var(--success);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  animation: slideIn 0.3s ease;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 16px;
+  color: var(--text-tertiary);
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .reward-points-redeemer {
+    padding: 16px;
+  }
+
+  .button-group {
+    grid-template-columns: 1fr;
+  }
+
+  .points-display {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dark Mode */
+html.dark .reward-points-redeemer {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+html.dark .info-text {
+  background: rgba(59, 130, 246, 0.05);
+  border-left-color: rgba(59, 130, 246, 0.3);
+}
+
+html.dark .price-breakdown {
+  background: var(--bg-primary);
+  border-color: var(--border-color);
+}
+
+html.dark .points-display {
+  background: var(--bg-primary);
+}
+
+html.dark .button-secondary {
+  background: var(--bg-primary);
+  border-color: var(--border-color);
+}
+
+html.dark .button-secondary:hover:not(:disabled) {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: var(--bg-secondary);
+}

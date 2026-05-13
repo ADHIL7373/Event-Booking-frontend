@@ -1,0 +1,331 @@
+/* Rewards View - Apple-style Minimal Design */
+
+.rewards-view {
+  padding: 24px 0;
+}
+
+.rewards-header {
+  margin-bottom: 28px;
+}
+
+.rewards-header h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--text-primary);
+}
+
+.rewards-subtitle {
+  color: var(--text-tertiary);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Main Rewards Card */
+.rewards-card {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.rewards-card.main-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(124, 58, 237, 0.03) 100%);
+  border: 1.5px solid var(--border-color);
+  margin-bottom: 28px;
+}
+
+/* Points Circle */
+.points-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--accent-blue);
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.12);
+}
+
+.points-value {
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3b82f6 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.points-label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Points Info */
+.points-info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  color: var(--text-tertiary);
+  font-size: 13px;
+}
+
+.info-value {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Benefits Section */
+.rewards-benefits {
+  margin-bottom: 24px;
+}
+
+.rewards-benefits h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.benefit-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+  border-color: var(--accent-blue);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.08);
+  transform: translateY(-2px);
+}
+
+.benefit-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.benefit-card h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 8px 0 6px 0;
+}
+
+.benefit-card p {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Rewards Note */
+.rewards-note {
+  background: rgba(59, 130, 246, 0.06);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.rewards-note strong {
+  color: var(--accent-blue);
+}
+
+/* Loading & Error States */
+.rewards-skeleton {
+  color: var(--text-tertiary);
+  padding: 20px;
+  text-align: center;
+}
+
+.rewards-error {
+  color: var(--danger);
+  padding: 16px;
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .rewards-card.main-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .points-circle {
+    width: 140px;
+    height: 140px;
+  }
+
+  .points-value {
+    font-size: 36px;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rewards-header h2 {
+    font-size: 24px;
+  }
+}
+
+/* Dark Mode */
+html.dark .rewards-card.main-card {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(124, 58, 237, 0.05) 100%);
+}
+
+html.dark .points-circle {
+  background: var(--bg-secondary);
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.08);
+}
+
+html.dark .benefit-card {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+html.dark .benefit-card:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+html.dark .rewards-note {
+  background: rgba(59, 130, 246, 0.04);
+  border-color: rgba(59, 130, 246, 0.15);
+}
+
+/* Compact Mode - For Profile Page */
+.rewards-view-compact {
+  padding: 12px 0;
+}
+
+.rewards-view-compact .rewards-header {
+  margin-bottom: 14px;
+}
+
+.rewards-view-compact .rewards-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.rewards-view-compact .rewards-card.main-card {
+  padding: 16px;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.rewards-view-compact .points-circle {
+  width: 100px;
+  height: 100px;
+}
+
+.rewards-view-compact .points-value {
+  font-size: 32px;
+}
+
+.rewards-view-compact .points-label {
+  font-size: 10px;
+  margin-top: 4px;
+}
+
+.rewards-view-compact .points-info {
+  gap: 10px;
+}
+
+.rewards-view-compact .info-item {
+  padding: 8px 0;
+}
+
+.rewards-view-compact .info-label {
+  font-size: 12px;
+}
+
+.rewards-view-compact .info-value {
+  font-size: 14px;
+}
+
+.rewards-view-compact .rewards-benefits {
+  margin-bottom: 12px;
+}
+
+.rewards-view-compact .rewards-benefits h3 {
+  font-size: 14px;
+  margin: 0 0 10px 0;
+}
+
+.rewards-view-compact .benefits-grid {
+  gap: 12px;
+}
+
+.rewards-view-compact .benefit-card {
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.rewards-view-compact .benefit-icon {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.rewards-view-compact .benefit-card h4 {
+  font-size: 12px;
+  margin: 6px 0 4px 0;
+}
+
+.rewards-view-compact .benefit-card p {
+  font-size: 11px;
+  margin: 0;
+}
+
+.rewards-view-compact .rewards-note {
+  padding: 10px 12px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.rewards-view-compact .rewards-note strong {
+  font-size: 12px;
+}
