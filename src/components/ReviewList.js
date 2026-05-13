@@ -20,33 +20,33 @@ const ReviewList = ({ eventId }) => {
 
   const token = localStorage.getItem('token');
 
+  const fetchReviews = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await axios.get(`http://localhost:5000/api/reviews/${eventId}`, {
+        params: {
+          page,
+          limit: 10,
+          sortBy,
+          rating: ratingFilter || undefined,
+        },
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
+
+      setReviews(response.data.data);
+      setStats(response.data.stats);
+      setTotalPages(response.data.pagination.pages);
+    } catch (err) {
+      console.error('Error fetching reviews:', err);
+      setError('Failed to load reviews');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const response = await axios.get(`http://localhost:5000/api/reviews/${eventId}`, {
-          params: {
-            page,
-            limit: 10,
-            sortBy,
-            rating: ratingFilter || undefined,
-          },
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        });
-
-        setReviews(response.data.data);
-        setStats(response.data.stats);
-        setTotalPages(response.data.pagination.pages);
-      } catch (err) {
-        console.error('Error fetching reviews:', err);
-        setError('Failed to load reviews');
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchReviews();
   }, [eventId, page, sortBy, ratingFilter, token]);
 

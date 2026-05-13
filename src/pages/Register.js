@@ -27,7 +27,7 @@ const Register = () => {
     hasUppercase: /[A-Z]/.test(formData.password),
     hasLowercase: /[a-z]/.test(formData.password),
     hasNumber: /[0-9]/.test(formData.password),
-    hasSpecialChar: /[!@#$%^&*()_+=\\[\\]{};':"\\\\|,.<>/?]/.test(formData.password),
+    hasSpecialChar: /[!@#$%^&*()_+=\[\]{};':"\\|,.<>/?]/.test(formData.password),
   };
 
   const isPasswordValid = Object.values(passwordRequirements).every(req => req);
