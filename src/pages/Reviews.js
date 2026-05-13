@@ -29,30 +29,30 @@ const ReviewsPage = () => {
       return;
     }
 
+    const fetchReviews = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const response = await axios.get(`${API_BASE_URL}/reviews/user/my-reviews`, {
+          params: { page, limit: 10, sortBy },
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        setReviews(response.data.data);
+        setTotalPages(response.data.pagination.pages);
+      } catch (err) {
+        console.error('Error fetching reviews:', err);
+        setError(
+          err.response?.data?.message || 'Failed to load reviews'
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchReviews();
-  }, [page, sortBy, token, navigate, fetchReviews]);
-
-  const fetchReviews = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const response = await axios.get(`${API_BASE_URL}/reviews/user/my-reviews`, {
-        params: { page, limit: 10, sortBy },
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      setReviews(response.data.data);
-      setTotalPages(response.data.pagination.pages);
-    } catch (err) {
-      console.error('Error fetching reviews:', err);
-      setError(
-        err.response?.data?.message || 'Failed to load reviews'
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [page, sortBy, token, navigate]);
 
   const handleDeleteReview = async (reviewId) => {
     if (!window.confirm('Are you sure you want to delete this review?')) {

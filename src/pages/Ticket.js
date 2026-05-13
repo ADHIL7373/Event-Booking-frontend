@@ -18,19 +18,19 @@ const Ticket = () => {
   const qrRef = useRef();
   const ticketCardRef = useRef();
 
-  const fetchBooking = async () => {
-    setLoading(true);
-    try {
-      const data = await bookingService.getBookingById(bookingId);
-      setBooking(data.booking);
-    } catch (err) {
-      console.error('Failed to fetch booking:', err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchBooking = async () => {
+      setLoading(true);
+      try {
+        const data = await bookingService.getBookingById(bookingId);
+        setBooking(data.booking);
+      } catch (err) {
+        console.error('Failed to fetch booking:', err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchBooking();
   }, [bookingId]);
 

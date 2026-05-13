@@ -29,30 +29,30 @@ const WishlistPage = () => {
       return;
     }
 
+    const fetchWishlist = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const response = await axios.get(`${API_BASE_URL}/wishlist`, {
+          params: { page, limit: 12, sortBy },
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        setWishlist(response.data.data);
+        setTotalPages(response.data.pagination.pages);
+      } catch (err) {
+        console.error('Error fetching wishlist:', err);
+        setError(
+          err.response?.data?.message || 'Failed to load wishlist'
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchWishlist();
-  }, [page, sortBy, token, navigate, fetchWishlist]);
-
-  const fetchWishlist = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const response = await axios.get(`${API_BASE_URL}/wishlist`, {
-        params: { page, limit: 12, sortBy },
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      setWishlist(response.data.data);
-      setTotalPages(response.data.pagination.pages);
-    } catch (err) {
-      console.error('Error fetching wishlist:', err);
-      setError(
-        err.response?.data?.message || 'Failed to load wishlist'
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [page, sortBy, token, navigate]);
 
   const handleRemoveFromWishlist = async (eventId) => {
     try {
