@@ -40,7 +40,7 @@ const AdminDashboard = () => {
     };
 
     fetchDashboard();
-  }, []);
+  }, [token]);
 
   const handleRefresh = async () => {
     setRefreshing(true);

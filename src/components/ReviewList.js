@@ -48,7 +48,7 @@ const ReviewList = ({ eventId }) => {
 
   useEffect(() => {
     fetchReviews();
-  }, [eventId, page, sortBy, ratingFilter, token]);
+  }, [eventId, page, sortBy, ratingFilter, token, fetchReviews]);
 
   const handleMarkHelpful = async (reviewId, helpful) => {
     try {
