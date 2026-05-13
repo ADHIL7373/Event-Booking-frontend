@@ -10,6 +10,8 @@ import axios from 'axios';
 import LoadingSpinner from '../components/LoadingSpinner';
 import './Wishlist.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+
 const WishlistPage = () => {
   const [wishlist, setWishlist] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -35,7 +37,7 @@ const WishlistPage = () => {
       setLoading(true);
       setError(null);
 
-      const response = await axios.get('http://localhost:5000/api/wishlist', {
+      const response = await axios.get(`${API_BASE_URL}/wishlist`, {
         params: { page, limit: 12, sortBy },
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -54,7 +56,7 @@ const WishlistPage = () => {
 
   const handleRemoveFromWishlist = async (eventId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/wishlist/${eventId}`, {
+      await axios.delete(`${API_BASE_URL}/wishlist/${eventId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -68,7 +70,7 @@ const WishlistPage = () => {
   const handleClearWishlist = async () => {
     if (window.confirm('Are you sure you want to clear your entire wishlist?')) {
       try {
-        await axios.delete('http://localhost:5000/api/wishlist', {
+        await axios.delete(`${API_BASE_URL}/wishlist`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -188,8 +190,10 @@ const WishlistCard = ({ item, onRemove }) => {
     }
     const img = item.image.trim();
     if (img.startsWith('http://') || img.startsWith('https://')) return img;
-    if (img.startsWith('/uploads')) return `http://localhost:5000${img}`;
-    return `http://localhost:5000/uploads/${img}`;
+    const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+    const serverUrl = baseUrl.replace('/api', '');
+    if (img.startsWith('/uploads')) return `${serverUrl}${img}`;
+    return `${serverUrl}/uploads/${img}`;
   };
 
   return (

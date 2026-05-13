@@ -8,6 +8,8 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import axios from 'axios';
 import './AdminDashboard.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+
 const AdminDashboardLegacy = () => {
   const [dashboard, setDashboard] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -22,7 +24,7 @@ const AdminDashboardLegacy = () => {
 
   const fetchDashboard = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/dashboard/admin', {
+      const response = await axios.get(`${API_BASE_URL}/dashboard/admin`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       

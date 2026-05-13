@@ -150,9 +150,11 @@ const ManageEvents = () => {
                           src={(() => {
                             const img = event.image || '';
                             if (img.startsWith('http://') || img.startsWith('https://')) return img;
-                            if (img.startsWith('/uploads')) return `http://localhost:5000${img}`;
-                            if (img.includes('/uploads/')) return `http://localhost:5000/${img.replace(/^\/+/, '')}`;
-                            return `http://localhost:5000/uploads/${img}`;
+                            const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+                            const serverUrl = baseUrl.replace('/api', '');
+                            if (img.startsWith('/uploads')) return `${serverUrl}${img}`;
+                            if (img.includes('/uploads/')) return `${serverUrl}/${img.replace(/^\/+/, '')}`;
+                            return `${serverUrl}/uploads/${img}`;
                           })()}
                           alt={event.title}
                           className="event-thumb"

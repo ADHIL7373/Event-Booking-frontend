@@ -3,6 +3,8 @@ import axios from 'axios';
 import LoadingSpinner from '../components/LoadingSpinner';
 import './AdminStyles.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+
 const AdminOverview = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -14,7 +16,7 @@ const AdminOverview = () => {
 
   const fetchOverview = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/admin/analytics', {
+      const response = await axios.get(`${API_BASE_URL}/admin/analytics`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setData(response.data.data);

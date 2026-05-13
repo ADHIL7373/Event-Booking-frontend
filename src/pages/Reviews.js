@@ -10,6 +10,8 @@ import axios from 'axios';
 import LoadingSpinner from '../components/LoadingSpinner';
 import './Reviews.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+
 const ReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -35,7 +37,7 @@ const ReviewsPage = () => {
       setLoading(true);
       setError(null);
 
-      const response = await axios.get('http://localhost:5000/api/reviews/user/my-reviews', {
+      const response = await axios.get(`${API_BASE_URL}/reviews/user/my-reviews`, {
         params: { page, limit: 10, sortBy },
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -58,7 +60,7 @@ const ReviewsPage = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:5000/api/reviews/${reviewId}`, {
+      await axios.delete(`${API_BASE_URL}/reviews/${reviewId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

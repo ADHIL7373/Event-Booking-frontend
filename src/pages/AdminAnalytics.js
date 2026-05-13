@@ -16,7 +16,7 @@ const AdminAnalytics = () => {
 
   const fetchAnalytics = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/admin/analytics', {
+      const response = await axios.get(`${API_BASE_URL}/admin/analytics`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setData(response.data.data);

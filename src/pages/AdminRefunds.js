@@ -19,7 +19,7 @@ const AdminRefunds = () => {
 
   const fetchRefunds = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/admin/refunds', {
+      const response = await axios.get(`${API_BASE_URL}/admin/refunds`, {
         params: { page, limit: 10, status: statusFilter },
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -38,7 +38,7 @@ const AdminRefunds = () => {
 
     try {
       await axios.post(
-        `http://localhost:5000/api/admin/refunds/${paymentId}/process`,
+        `${API_BASE_URL}/admin/refunds/${paymentId}/process`,
         { reason },
         { headers: { Authorization: `Bearer ${token}` } }
       );

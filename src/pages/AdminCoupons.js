@@ -29,7 +29,7 @@ const AdminCoupons = () => {
 
   const fetchCoupons = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/admin/coupons', {
+      const response = await axios.get(`${API_BASE_URL}/admin/coupons`, {
         params: { page, limit: 10, search },
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -54,7 +54,7 @@ const AdminCoupons = () => {
       };
 
       await axios.post(
-        'http://localhost:5000/api/admin/coupons',
+        `${API_BASE_URL}/admin/coupons`,
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -80,7 +80,7 @@ const AdminCoupons = () => {
   const handleDeleteCoupon = async (couponId) => {
     if (window.confirm('Delete this coupon?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/admin/coupons/${couponId}`, {
+        await axios.delete(`${API_BASE_URL}/admin/coupons/${couponId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         fetchCoupons();

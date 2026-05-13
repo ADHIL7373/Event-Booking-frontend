@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './AdminStyles.css';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+
 const AdminReports = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -28,7 +30,7 @@ const AdminReports = () => {
       };
 
       const response = await axios.get(
-        `http://localhost:5000${endpoints[reportType]}`,
+        `${API_BASE_URL}${endpoints[reportType]}`,
         {
           params,
           headers: { Authorization: `Bearer ${token}` },
