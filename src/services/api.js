@@ -8,16 +8,29 @@ import axios from 'axios';
 // Determine API base URL - default to production HTTPS backend
 let API_BASE_URL = process.env.REACT_APP_API_URL;
 
+console.log('[API] Env REACT_APP_API_URL:', API_BASE_URL);
+console.log('[API] Window location:', typeof window !== 'undefined' ? window.location.href : 'N/A');
+
 // If no env var, determine based on environment
 if (!API_BASE_URL) {
-  if (typeof window !== 'undefined' && window.location.protocol === 'https:') {
+  const isProduction = typeof window !== 'undefined' && (
+    window.location.hostname.includes('vercel.app') || 
+    window.location.hostname.includes('render.com') ||
+    window.location.protocol === 'https:'
+  );
+  
+  if (isProduction) {
     // Production: Use HTTPS backend
     API_BASE_URL = 'https://event-booking-backend-suu5.onrender.com/api';
+    console.log('[API] PRODUCTION MODE - Using:', API_BASE_URL);
   } else {
     // Development: Use localhost
     API_BASE_URL = 'http://localhost:5000/api';
+    console.log('[API] DEVELOPMENT MODE - Using:', API_BASE_URL);
   }
 }
+
+console.log('[API] Final API_BASE_URL:', API_BASE_URL);
 
 // Create axios instance
 const api = axios.create({

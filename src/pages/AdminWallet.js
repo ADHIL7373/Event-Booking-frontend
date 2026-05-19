@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
 import './AdminStyles.css';
 
@@ -18,9 +18,8 @@ const AdminWallet = () => {
 
   const fetchWalletData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/admin/wallet', {
+      const response = await api.get('/admin/wallet', {
         params: { page, limit: 20 },
-        headers: { Authorization: `Bearer ${token}` },
       });
       setData(response.data.data);
       setError('');

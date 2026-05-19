@@ -5,7 +5,7 @@
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import './ReviewList.css';
 
 const ReviewList = ({ eventId }) => {
@@ -25,14 +25,13 @@ const ReviewList = ({ eventId }) => {
       setLoading(true);
       setError(null);
 
-      const response = await axios.get(`http://localhost:5000/api/reviews/${eventId}`, {
+      const response = await api.get(`/reviews/${eventId}`, {
         params: {
           page,
           limit: 10,
           sortBy,
           rating: ratingFilter || undefined,
         },
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
 
       setReviews(response.data.data);
@@ -52,13 +51,7 @@ const ReviewList = ({ eventId }) => {
 
   const handleMarkHelpful = async (reviewId, helpful) => {
     try {
-      await axios.put(
-        `http://localhost:5000/api/reviews/${reviewId}/helpful`,
-        { helpful },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await api.post(`/reviews/${reviewId}/helpful`, { helpful });
 
       // Refresh reviews
       fetchReviews();

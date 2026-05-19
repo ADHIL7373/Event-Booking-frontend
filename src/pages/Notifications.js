@@ -5,7 +5,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../components/LoadingSpinner';
 import './Notifications.css';
@@ -41,9 +41,8 @@ const NotificationsPage = () => {
         read: filter === 'read' ? true : filter === 'unread' ? false : undefined,
       };
 
-      const response = await axios.get('http://localhost:5000/api/notifications', {
+      const response = await api.get('/notifications', {
         params,
-        headers: { Authorization: `Bearer ${token}` },
       });
 
       setNotifications(response.data.data);
@@ -60,13 +59,7 @@ const NotificationsPage = () => {
 
   const handleMarkAsRead = async (notificationId) => {
     try {
-      await axios.put(
-        `http://localhost:5000/api/notifications/${notificationId}/read`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await api.put(`/notifications/${notificationId}/read`, {});
 
       setNotifications(
         notifications.map((n) =>
@@ -80,13 +73,7 @@ const NotificationsPage = () => {
 
   const handleMarkAllAsRead = async () => {
     try {
-      await axios.put(
-        'http://localhost:5000/api/notifications/read-all',
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await api.put('/notifications/read-all', {});
 
       setNotifications(notifications.map((n) => ({ ...n, read: true })));
     } catch (err) {
@@ -96,9 +83,7 @@ const NotificationsPage = () => {
 
   const handleDelete = async (notificationId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/notifications/${notificationId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await api.delete(`/notifications/${notificationId}`);
 
       setNotifications(
         notifications.filter((n) => n._id !== notificationId)
@@ -111,9 +96,7 @@ const NotificationsPage = () => {
   const handleClearAll = async () => {
     if (window.confirm('Are you sure you want to clear all notifications?')) {
       try {
-        await axios.delete('http://localhost:5000/api/notifications', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        await api.delete('/notifications');
 
         setNotifications([]);
       } catch (err) {
