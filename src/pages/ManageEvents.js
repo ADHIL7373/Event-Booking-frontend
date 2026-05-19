@@ -1,6 +1,7 @@
 /**
  * Manage Events Page (Admin)
  * View and manage all created events with delete option
+ * Version: 2.1.0 - Professional delete modal
  */
 
 import React, { useState, useEffect } from 'react';
