@@ -97,8 +97,11 @@ html.dark .navbar {
 }
 
 .register-link:hover {
+  color: white;
   opacity: 0.9;
   box-shadow: var(--shadow-sm);
+  background: #0051d5;
+  border-color: #0051d5;
 }
 
 .logout-btn {
