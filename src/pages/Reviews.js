@@ -32,7 +32,7 @@ const ReviewsPage = () => {
         setLoading(true);
         setError(null);
 
-        const response = await axios.get(`${API_BASE_URL}/reviews/user/my-reviews`, {
+        const response = await api.get('/reviews/user/my-reviews', {
           params: { page, limit: 10, sortBy },
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -58,7 +58,7 @@ const ReviewsPage = () => {
     }
 
     try {
-      await axios.delete(`${API_BASE_URL}/reviews/${reviewId}`, {
+      await api.delete(/reviews/ + reviewId, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -223,3 +223,4 @@ const ReviewCard = ({ review, onDelete }) => {
 };
 
 export default ReviewsPage;
+
