@@ -5,7 +5,19 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+// Determine API base URL - default to production HTTPS backend
+let API_BASE_URL = process.env.REACT_APP_API_URL;
+
+// If no env var, determine based on environment
+if (!API_BASE_URL) {
+  if (typeof window !== 'undefined' && window.location.protocol === 'https:') {
+    // Production: Use HTTPS backend
+    API_BASE_URL = 'https://event-booking-backend-suu5.onrender.com/api';
+  } else {
+    // Development: Use localhost
+    API_BASE_URL = 'http://localhost:5000/api';
+  }
+}
 
 // Create axios instance
 const api = axios.create({
