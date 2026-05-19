@@ -1,6 +1,7 @@
 /**
  * Image URL Utility
  * Constructs proper image URLs based on the current API server
+ * Handles both development and production environments
  */
 
 /**
@@ -19,42 +20,52 @@ export const getImageUrl = (image) => {
 
   const img = typeof image === 'string' ? image.trim() : String(image).trim();
 
-  // If already a full URL (external image), return as-is
-  if (img.startsWith('http://') || img.startsWith('https://')) {
+  // If already an external full URL (http/https and not localhost), return as-is
+  if ((img.startsWith('http://') || img.startsWith('https://')) && !img.includes('localhost')) {
     return img;
   }
 
-  // Get the server base URL dynamically
-  // Try environment variable first, then derive from current location
-  let serverUrl = process.env.REACT_APP_API_URL;
-  
-  if (!serverUrl) {
-    // Fallback: derive from current window location
-    // In production (HTTPS Vercel): https://event-booking-backend-suu5.onrender.com
-    // In development (HTTP localhost): http://localhost:5000
-    if (window.location.protocol === 'https:') {
-      // Production environment - use HTTPS backend
-      serverUrl = 'https://event-booking-backend-suu5.onrender.com/api';
+  // CRITICAL: Replace any localhost references with production Render backend
+  let normalizedImg = img;
+  if (img.includes('localhost:5000')) {
+    // Strip out localhost:5000 and keep just the path
+    normalizedImg = img.replace('http://localhost:5000', '');
+  }
+
+  // Determine the correct server URL
+  let serverUrl = 'https://event-booking-backend-suu5.onrender.com'; // Default to production
+
+  // Try to use environment variable if available
+  const apiUrl = process.env.REACT_APP_API_URL;
+  if (apiUrl && apiUrl.includes('localhost')) {
+    // If env var points to localhost, we're in development
+    serverUrl = 'http://localhost:5000';
+  } else if (apiUrl) {
+    // Use the env var as-is, remove '/api' suffix if present
+    serverUrl = apiUrl.replace('/api', '');
+  } else {
+    // Auto-detect based on current protocol
+    if (window && window.location && window.location.protocol === 'https:') {
+      serverUrl = 'https://event-booking-backend-suu5.onrender.com';
     } else {
-      // Development environment
-      serverUrl = 'http://localhost:5000/api';
+      serverUrl = 'http://localhost:5000';
     }
   }
-  
-  // Remove '/api' from the URL to get base server URL
-  serverUrl = serverUrl.replace('/api', '');
 
   // Handle various image path formats
-  if (img.startsWith('/uploads/')) {
+  if (normalizedImg.startsWith('/uploads/')) {
     // Already has /uploads/ prefix
-    return `${serverUrl}${img}`;
-  } else if (img.includes('/uploads/')) {
+    return `${serverUrl}${normalizedImg}`;
+  } else if (normalizedImg.includes('/uploads/')) {
     // Has /uploads/ somewhere in the path
-    const parts = img.split('/uploads/');
+    const parts = normalizedImg.split('/uploads/');
     return `${serverUrl}/uploads/${parts[parts.length - 1]}`;
+  } else if (normalizedImg.startsWith('http://') || normalizedImg.startsWith('https://')) {
+    // Already a full URL (e.g., Unsplash), return as-is
+    return normalizedImg;
   } else {
     // Bare filename, add /uploads/ prefix
-    const cleanFilename = img.replace(/^\/+/, '');
+    const cleanFilename = normalizedImg.replace(/^\/+/, '');
     return `${serverUrl}/uploads/${cleanFilename}`;
   }
 };
