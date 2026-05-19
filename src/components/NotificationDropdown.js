@@ -6,7 +6,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../services/api';
 import './NotificationDropdown.css';
 
 const NotificationDropdown = ({ onClose, onNotificationAction }) => {
@@ -25,9 +25,8 @@ const NotificationDropdown = ({ onClose, onNotificationAction }) => {
       setLoading(true);
       setError(null);
 
-      const response = await axios.get('http://localhost:5000/api/notifications', {
+      const response = await api.get('/notifications', {
         params: { limit: 10, read: false },
-        headers: { Authorization: `Bearer ${token}` },
       });
 
       setNotifications(response.data.data);
@@ -41,13 +40,7 @@ const NotificationDropdown = ({ onClose, onNotificationAction }) => {
 
   const handleMarkAsRead = async (notificationId, actionUrl) => {
     try {
-      await axios.put(
-        `http://localhost:5000/api/notifications/${notificationId}/read`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await api.put(`/notifications/${notificationId}/read`, {});
 
       setNotifications(
         notifications.filter((n) => n._id !== notificationId)
@@ -67,13 +60,7 @@ const NotificationDropdown = ({ onClose, onNotificationAction }) => {
 
   const handleMarkAllAsRead = async () => {
     try {
-      await axios.put(
-        'http://localhost:5000/api/notifications/read-all',
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await api.put('/notifications/read-all', {});
 
       setNotifications([]);
       onNotificationAction?.();
@@ -84,12 +71,7 @@ const NotificationDropdown = ({ onClose, onNotificationAction }) => {
 
   const handleDelete = async (notificationId) => {
     try {
-      await axios.delete(
-        `http://localhost:5000/api/notifications/${notificationId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await api.delete(`/notifications/${notificationId}`);
 
       setNotifications(
         notifications.filter((n) => n._id !== notificationId)

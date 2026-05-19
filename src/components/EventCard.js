@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../services/api';
 import { getImageUrl } from '../services/imageUrlService';
 import './EventCard.css';
 
@@ -17,14 +17,12 @@ const EventCard = ({ event }) => {
 
   const checkWishlistStatus = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/wishlist/check/${event._id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await api.get(`/wishlist/check/${event._id}`);
       setIsWishlisted(response.data.inWishlist);
     } catch (error) {
       console.error('Error checking wishlist status:', error);
     }
-  }, [event._id, token]);
+  }, [event._id]);
 
   useEffect(() => {
     if (token) {
@@ -44,13 +42,7 @@ const EventCard = ({ event }) => {
     try {
       setLoading(true);
 
-      await axios.post(
-        'http://localhost:5000/api/wishlist',
-        { eventId: event._id },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await api.post('/wishlist', { eventId: event._id });
 
       setIsWishlisted(!isWishlisted);
     } catch (error) {

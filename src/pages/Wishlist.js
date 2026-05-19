@@ -6,11 +6,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
 import './Wishlist.css';
-
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
 const WishlistPage = () => {
   const [wishlist, setWishlist] = useState([]);
@@ -34,9 +32,8 @@ const WishlistPage = () => {
         setLoading(true);
         setError(null);
 
-        const response = await axios.get(`${API_BASE_URL}/wishlist`, {
+        const response = await api.get('/wishlist', {
           params: { page, limit: 12, sortBy },
-          headers: { Authorization: `Bearer ${token}` },
         });
 
         setWishlist(response.data.data);
@@ -56,9 +53,7 @@ const WishlistPage = () => {
 
   const handleRemoveFromWishlist = async (eventId) => {
     try {
-      await axios.delete(`${API_BASE_URL}/wishlist/${eventId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+await api.delete(`/wishlist/${eventId}`);
 
       setWishlist(wishlist.filter((item) => item.eventId._id !== eventId));
     } catch (err) {
@@ -70,7 +65,7 @@ const WishlistPage = () => {
   const handleClearWishlist = async () => {
     if (window.confirm('Are you sure you want to clear your entire wishlist?')) {
       try {
-        await axios.delete(`${API_BASE_URL}/wishlist`, {
+        await api.delete('/wishlist', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -190,7 +185,7 @@ const WishlistCard = ({ item, onRemove }) => {
     }
     const img = item.image.trim();
     if (img.startsWith('http://') || img.startsWith('https://')) return img;
-    const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+    const baseUrl = process.env.REACT_APP_API_URL || (typeof window !== 'undefined' && window.location.protocol === 'https:' ? 'https://event-booking-backend-suu5.onrender.com' : 'http://localhost:5000');
     const serverUrl = baseUrl.replace('/api', '');
     if (img.startsWith('/uploads')) return `${serverUrl}${img}`;
     return `${serverUrl}/uploads/${img}`;

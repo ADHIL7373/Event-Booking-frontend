@@ -3,7 +3,7 @@ import axios from 'axios';
 import LoadingSpinner from '../components/LoadingSpinner';
 import './AdminStyles.css';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+import api from '../services/api';
 
 const AdminOverview = () => {
   const [data, setData] = useState(null);

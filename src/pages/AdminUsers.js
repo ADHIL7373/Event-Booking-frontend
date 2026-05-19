@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
 import './AdminStyles.css';
 
@@ -20,9 +20,8 @@ const AdminUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/admin/users', {
+      const response = await api.get('/admin/users', {
         params: { page, limit: 10, search },
-        headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(response.data.data);
       setError('');
@@ -35,9 +34,7 @@ const AdminUsers = () => {
 
   const handleViewDetails = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/admin/users/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await api.get(`/admin/users/${userId}`);
       setSelectedUser(response.data.data);
       setShowDetails(true);
     } catch (err) {
@@ -47,9 +44,8 @@ const AdminUsers = () => {
 
   const handleBlockUser = async (userId, isBlocked) => {
     try {
-      await axios.patch(`http://localhost:5000/api/admin/users/${userId}/toggle-status`, 
-        { isBlocked: !isBlocked },
-        { headers: { Authorization: `Bearer ${token}` } }
+      await api.patch(`/admin/users/${userId}/toggle-status`, 
+        { isBlocked: !isBlocked }
       );
       fetchUsers();
       setShowDetails(false);

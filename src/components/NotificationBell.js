@@ -5,7 +5,7 @@
  */
 
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import NotificationDropdown from './NotificationDropdown';
 import './NotificationBell.css';
 
@@ -43,9 +43,7 @@ const NotificationBell = () => {
 
   const fetchUnreadCount = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/notifications/unread-count', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await api.get('/notifications/unread-count');
       setUnreadCount(response.data.unreadCount);
     } catch (error) {
       console.error('Error fetching unread count:', error);

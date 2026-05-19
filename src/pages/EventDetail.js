@@ -8,6 +8,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import eventService from '../services/eventService';
 import bookingService from '../services/bookingService';
+import { getImageUrl } from '../services/imageUrlService';
 import ReviewForm from '../components/ReviewForm';
 import ReviewList from '../components/ReviewList';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -82,17 +83,10 @@ const EventDetail = () => {
 
   // Construct image URL from filename
   const getImageUrl = () => {
-    if (!event.image) {
+    if (!event || !event.image) {
       return 'https://via.placeholder.com/400x300?text=Event+Image';
     }
-    // If it's already a full URL (for backward compatibility), use as is
-    if (event.image.startsWith('http')) {
-      return event.image;
-    }
-    // Otherwise construct URL from filename
-    const backendUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
-    const baseUrl = backendUrl.replace('/api', '');
-    return `${baseUrl}/uploads/${event.image}`;
+    return getImageUrl(event.image);
   };
 
   return (

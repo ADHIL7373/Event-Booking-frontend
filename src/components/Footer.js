@@ -34,7 +34,8 @@ const Footer = () => {
 
     try {
       // Call backend subscription endpoint
-      const response = await fetch('http://localhost:5000/api/subscribe', {
+      const apiUrl = process.env.REACT_APP_API_URL || (typeof window !== 'undefined' && window.location.protocol === 'https:' ? 'https://event-booking-backend-suu5.onrender.com/api' : 'http://localhost:5000/api');
+      const response = await fetch(`${apiUrl}/subscribe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

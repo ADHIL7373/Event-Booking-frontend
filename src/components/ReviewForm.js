@@ -5,7 +5,7 @@
  */
 
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import './ReviewForm.css';
 
 const ReviewForm = ({ eventId, onReviewSubmitted, existingReview = null }) => {
@@ -31,17 +31,11 @@ const ReviewForm = ({ eventId, onReviewSubmitted, existingReview = null }) => {
       setError(null);
       setSuccess(false);
 
-      const response = await axios.post(
-        'http://localhost:5000/api/reviews',
-        {
-          eventId,
-          rating,
-          comment: comment.trim() || '',
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const response = await api.post('/reviews', {
+        eventId,
+        rating,
+        comment: comment.trim() || '',
+      });
 
       setSuccess(true);
       setRating(0);

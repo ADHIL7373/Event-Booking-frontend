@@ -8,7 +8,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import axios from 'axios';
 import './AdminDashboard.css';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+import api from '../services/api';
 
 const AdminDashboard = () => {
   const [dashboard, setDashboard] = useState(null);
@@ -21,7 +21,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/dashboard/admin`, {
+        const response = await api.get('/dashboard/admin', {
           headers: { Authorization: `Bearer ${token}` },
         });
         
@@ -46,7 +46,7 @@ const AdminDashboard = () => {
     setRefreshing(true);
     const fetchDashboard = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/dashboard/admin`, {
+        const response = await api.get('/dashboard/admin', {
           headers: { Authorization: `Bearer ${token}` },
         });
         
