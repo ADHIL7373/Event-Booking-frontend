@@ -18,6 +18,7 @@ const ConfirmationModal = ({
   onCancel,
   isLoading = false 
 }) => {
+  console.log('[DEBUG] ConfirmationModal - isOpen:', isOpen, 'title:', title);
   if (!isOpen) return null;
 
   return (

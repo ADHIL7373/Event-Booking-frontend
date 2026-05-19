@@ -47,8 +47,10 @@ const ManageEvents = () => {
 
   const handleDeleteEvent = async (eventId, eventTitle) => {
     // Show modal instead of window.confirm
+    console.log('[DEBUG] handleDeleteEvent called with:', { eventId, eventTitle });
     setDeleteTarget({ id: eventId, title: eventTitle });
     setShowDeleteModal(true);
+    console.log('[DEBUG] Modal state updated - should show professional modal');
   };
 
   const confirmDelete = async () => {
