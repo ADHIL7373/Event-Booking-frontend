@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
+import ConfirmationModal from '../components/ConfirmationModal';
 import eventService from '../services/eventService';
 import api from '../services/api';
 import { useTheme } from '../context/useTheme';
@@ -20,6 +21,11 @@ const ManageEvents = () => {
   const [sortBy, setSortBy] = useState('newest');
   const [searchQuery, setSearchQuery] = useState('');
   const [deletingId, setDeletingId] = useState(null);
+  
+  // Modal state
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState({ id: null, title: '' });
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     fetchAllEvents();
@@ -39,21 +45,34 @@ const ManageEvents = () => {
   };
 
   const handleDeleteEvent = async (eventId, eventTitle) => {
-    if (!window.confirm(`Are you sure you want to delete "${eventTitle}"? This action cannot be undone.`)) {
-      return;
-    }
+    // Show modal instead of window.confirm
+    setDeleteTarget({ id: eventId, title: eventTitle });
+    setShowDeleteModal(true);
+  };
 
-    setDeletingId(eventId);
+  const confirmDelete = async () => {
+    if (!deleteTarget.id) return;
+
+    setIsDeleting(true);
     try {
-      await eventService.deleteEvent(eventId);
-      setEvents(events.filter(e => e._id !== eventId));
-      setSuccessMessage(`✅ "${eventTitle}" deleted successfully!`);
+      await eventService.deleteEvent(deleteTarget.id);
+      setEvents(events.filter(e => e._id !== deleteTarget.id));
+      setSuccessMessage(`✅ "${deleteTarget.title}" deleted successfully!`);
+      setShowDeleteModal(false);
+      setDeleteTarget({ id: null, title: '' });
       setTimeout(() => setSuccessMessage(''), 3000);
     } catch (err) {
       setError(err.message || 'Failed to delete event');
     } finally {
+      setIsDeleting(false);
       setDeletingId(null);
     }
+  };
+
+  const cancelDelete = () => {
+    setShowDeleteModal(false);
+    setDeleteTarget({ id: null, title: '' });
+    setIsDeleting(false);
   };
 
   // Filter events
@@ -213,6 +232,20 @@ const ManageEvents = () => {
           </div>
         )}
       </div>
+
+      {/* Delete Confirmation Modal */}
+      <ConfirmationModal
+        isOpen={showDeleteModal}
+        title="Delete Event?"
+        message={`Are you sure you want to delete "${deleteTarget.title}"? This action cannot be undone.`}
+        icon="🗑️"
+        isDangerous={true}
+        confirmText="Delete"
+        cancelText="Cancel"
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
+        isLoading={isDeleting}
+      />
     </div>
   );
 };
