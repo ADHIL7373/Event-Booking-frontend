@@ -8,6 +8,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import eventService from '../services/eventService';
 import api from '../services/api';
 import { useTheme } from '../context/useTheme';
+import { getImageUrl } from '../services/imageUrlService';
 import './ManageEvents.css';
 
 const ManageEvents = () => {
@@ -147,15 +148,7 @@ const ManageEvents = () => {
                     <tr key={event._id} className="event-row">
                       <td className="image-cell">
                         <img 
-                          src={(() => {
-                            const img = event.image || '';
-                            if (img.startsWith('http://') || img.startsWith('https://')) return img;
-                            const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
-                            const serverUrl = baseUrl.replace('/api', '');
-                            if (img.startsWith('/uploads')) return `${serverUrl}${img}`;
-                            if (img.includes('/uploads/')) return `${serverUrl}/${img.replace(/^\/+/, '')}`;
-                            return `${serverUrl}/uploads/${img}`;
-                          })()}
+                          src={getImageUrl(event.image)}
                           alt={event.title}
                           className="event-thumb"
                           onError={(e) => {

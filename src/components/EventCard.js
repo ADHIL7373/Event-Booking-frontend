@@ -6,6 +6,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { getImageUrl } from '../services/imageUrlService';
 import './EventCard.css';
 
 const EventCard = ({ event }) => {
@@ -59,21 +60,8 @@ const EventCard = ({ event }) => {
     }
   };
 
-  // Construct image URL from filename
-  const getImageUrl = () => {
-    const defaultImg = 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=500';
-    if (!event?.image || event.image.trim() === '') return defaultImg;
-
-    const img = event.image.trim();
-    if (img.startsWith('http://') || img.startsWith('https://')) return img;
-    if (img.startsWith('/uploads')) return `http://localhost:5000${img}?t=${Date.now()}`;
-    if (img.includes('/uploads/')) {
-      const cleaned = img.replace(/^\/+/, '');
-      return `http://localhost:5000/${cleaned}?t=${Date.now()}`;
-    }
-    // assume bare filename
-    return `http://localhost:5000/uploads/${img}?t=${Date.now()}`;
-  };
+  // Get image URL - handles both external URLs and local uploads
+  const imageUrl = getImageUrl(event.image);
 
   const eventDate = new Date(event.date);
   const formattedDate = eventDate.toLocaleDateString('en-US', {
@@ -90,7 +78,7 @@ const EventCard = ({ event }) => {
     <div className="event-card">
       <div className="event-image">
         <img 
-          src={getImageUrl()} 
+          src={imageUrl} 
           alt={event.title}
           onError={(e) => {
             console.error('Image load error for:', event.title);
