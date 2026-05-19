@@ -3,8 +3,6 @@
  * Constructs proper image URLs based on the current API server
  */
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
-
 /**
  * Constructs a full image URL from an image path or filename
  * @param {string} image - The image path/filename from the database
@@ -26,8 +24,25 @@ export const getImageUrl = (image) => {
     return img;
   }
 
-  // Get the server base URL by removing '/api' from the API URL
-  const serverUrl = API_BASE_URL.replace('/api', '');
+  // Get the server base URL dynamically
+  // Try environment variable first, then derive from current location
+  let serverUrl = process.env.REACT_APP_API_URL;
+  
+  if (!serverUrl) {
+    // Fallback: derive from current window location
+    // In production (HTTPS Vercel): https://event-booking-backend-suu5.onrender.com
+    // In development (HTTP localhost): http://localhost:5000
+    if (window.location.protocol === 'https:') {
+      // Production environment - use HTTPS backend
+      serverUrl = 'https://event-booking-backend-suu5.onrender.com/api';
+    } else {
+      // Development environment
+      serverUrl = 'http://localhost:5000/api';
+    }
+  }
+  
+  // Remove '/api' from the URL to get base server URL
+  serverUrl = serverUrl.replace('/api', '');
 
   // Handle various image path formats
   if (img.startsWith('/uploads/')) {
@@ -45,3 +60,4 @@ export const getImageUrl = (image) => {
 };
 
 export default getImageUrl;
+
